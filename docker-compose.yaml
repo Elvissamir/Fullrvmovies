@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+  backend: 
+    container_name: frvm_backend
+    build: ./backend
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+    volumes:
+      - ./backend:/var/www
+    ports:
+      - 3001:3001
+  frontend:
+    container_name: frvm_frontend
+    build: ./frontend
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+    volumes:
+      - ./frontend:/var/www
+    ports:
+      - 3000:3000
+  mongo: 
+    container_name: frvm_database
+    image: mongo:5.0.6
+    ports:
+      - 27017:27017
+    volumes:
+      - fullrvmovies:/data/db
+volumes:
+  fullrvmovies: 
