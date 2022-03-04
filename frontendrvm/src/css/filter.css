@@ -1,0 +1,34 @@
+.filter-list {
+    @apply flex flex-col items-start
+  }
+  
+  .filter-list .filter-option:first-child {
+    border: 0px;
+    border-top: var(--borders);
+    border-left: var(--borders);
+    border-right: var(--borders);
+  }
+  
+  .filter-list .filter-option {
+    border-top: var(--borders);
+    border-left: var(--borders);
+    border-right: var(--borders);
+  }
+  
+  .filter-list .filter-option:last-child {
+    border: 0px;
+    border-top: var(--borders);
+    border-bottom: var(--borders);
+    border-left: var(--borders);
+    border-right: var(--borders);
+  }
+  
+  
+  .filter-option {
+    @apply p-2 font-black w-full
+  }
+  
+  .active-filter {
+    background-color: var(--active-color);
+    color: white;
+  }

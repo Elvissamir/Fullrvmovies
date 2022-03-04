@@ -1,0 +1,4 @@
+:root {
+    --borders: 2px rgba(100, 100, 100, 0.5) solid;
+    --active-color: rgba(0, 180, 250, 1)
+  }

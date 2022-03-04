@@ -1,0 +1,51 @@
+.form-wrapper {
+    @apply mt-8 mx-auto
+}
+
+.form {
+    @apply flex flex-col bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 mt-4
+}
+
+.form-title {
+    @apply text-3xl font-black
+}
+
+.form-field {
+    @apply flex flex-col
+}
+
+.form-field:not(:first-child) {
+    @apply mt-4
+}
+
+.form-label {
+    @apply text-gray-700 text-sm font-bold mb-2
+}
+
+.form-input {
+    @apply border border-gray-200 py-1 px-2 shadow-md
+}
+
+.form .form-input:focus {
+    box-shadow: 0px 0px 12px rgba(0, 50, 200, 0.8);
+}
+
+.form-link {
+    @apply inline-block align-baseline text-sm text-blue-500 hover:text-blue-800
+}
+
+.form-select {
+    @apply w-full border bg-white py-3 px-4 pr-8 rounded shadow-md
+}
+
+.form-footer {
+    @apply flex justify-between mt-5
+}
+
+.form-button {
+    @apply font-black py-2 px-4 rounded bg-blue-700 text-white
+}
+
+.form-error {
+    @apply text-red-500 text-xs italic
+}

@@ -1,0 +1,10 @@
+
+.button {
+    @apply font-black py-2 px-4 rounded
+}
+
+.action-button {
+    background-color: var(--active-color);
+    color: white;
+    box-shadow: 1px 1px 3px rgba(10, 10, 10, 0.7);
+}

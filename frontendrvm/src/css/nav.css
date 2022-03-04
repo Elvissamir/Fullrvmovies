@@ -1,0 +1,24 @@
+
+.nav {
+    @apply bg-gray-600
+}
+
+.nav-content {
+    @apply flex p-2 justify-between items-center text-white mx-auto w-10/12
+}
+
+.menu-wrapper {
+    @apply flex
+}
+
+.menu {
+    @apply flex
+}
+
+.menu-link {
+    @apply mx-2 p-2 font-black
+}
+
+.menu li .active {
+    @apply text-cyan-400
+}

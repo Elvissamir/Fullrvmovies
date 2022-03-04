@@ -1,0 +1,27 @@
+.pagination {
+@apply flex font-black
+}
+
+.pagination .pagination-item:first-child
+{
+border: 0px;
+border-left: var(--borders);
+border-top: var(--borders);
+border-bottom: var(--borders);
+}
+
+.pagination .pagination-item
+{
+border: var(--borders);
+}
+
+.page-link {
+height: 100%;
+padding: 0.5rem 1rem;
+font-weight: bolder;
+}
+
+.active-page {
+background-color: var(--active-color);
+color: white;
+}
