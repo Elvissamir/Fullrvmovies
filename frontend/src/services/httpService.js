@@ -1,5 +1,5 @@
 import axios from 'axios';
-import auth from '../services/authService'
+import auth from './authService'
 import { toast } from 'react-toastify'
 
 axios.defaults.headers.common['x-auth-token'] = auth.getJwt()

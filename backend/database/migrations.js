@@ -1,4 +1,6 @@
+const winston = require('winston')
 const { Genre } = require('../models/Genre')
+
 
 const genres = [
     { name: 'Adventure'},
@@ -24,17 +26,18 @@ const doMigration = async ({ model, data }) => {
 const runMigrations = async () => {
     for (const migration of migrations) {
         try {
-            console.log(`Running migration for ${migration.name} Model...`)
+            winston.info(`Running migration for ${migration.name} Model...`)
             await doMigration(migration)
-            console.log(`Finished migration for ${migration.name} Model.`)
+            winston.info(`Finished migration for ${migration.name} Model.`)
         }
         catch (ex)
         {
-            console.log(`There was an error with migration for ${migration.name} model.`, ex)
+            winston.info(`There was an error with migration for ${migration.name} model.`, ex)
+            winston.info()
         }
     }
 }
 
 exports = {
-    runMigrations()
+    runMigrations
 }
