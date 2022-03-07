@@ -6,8 +6,17 @@ const { Movie } = require('../../../models/Movie')
 const { Genre } = require('../../../models/Genre')
 const { Rental } = require('../../../models/Rental')
 const { User } = require('../../../models/User')
+const { connectToTestingDB, disconnectTestingDB } = require('../../testHelpers')
 
 describe('Route /api/rentals', () => {
+    beforeAll(async () => {
+        await connectToTestingDB()
+    })
+
+    afterAll(async () => {
+        await disconnectTestingDB()
+    })
+    
     describe('GET /', () => {
         
         beforeEach(async () => {

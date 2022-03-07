@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "test": "APP_ENV=testing jest --watchAll --runInBand --verbose population.test.js --setupFiles dotenv/config"
+    "test": "APP_ENV=testing jest --watchAll --runInBand --verbose --setupFiles dotenv/config"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",

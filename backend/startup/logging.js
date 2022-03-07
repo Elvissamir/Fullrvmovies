@@ -14,6 +14,6 @@ module.exports = function () {
     })
     
     winston.add(new winston.transports.File({filename: 'logfile.log' }))
-    winston.add(new winston.transports.Console({format: winston.format.printf(log => log.message)}))
+    winston.add(new winston.transports.Console({format: winston.format.printf(log => log.message), silent: process.env.APP_ENV === 'testing' }))
     winston.add(new winston.transports.MongoDB({ db: getConnectionUrl(), level: 'error', tryReconnect: true, options: { useUnifiedTopology: true }}))
 }

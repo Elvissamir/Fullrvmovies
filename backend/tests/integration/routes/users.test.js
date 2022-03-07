@@ -2,8 +2,17 @@ const app = require('../../../app')
 const request = require("supertest")
 const bcrypt = require("bcrypt")
 const { User } = require('../../../models/User')
+const { connectToTestingDB, disconnectTestingDB } = require('../../testHelpers')
 
 describe('Route /api/users', () => {
+    beforeAll(async () => {
+        await connectToTestingDB()
+    })
+
+    afterAll(async () => {
+        await disconnectTestingDB()
+    })
+    
     describe('GET /', () => {
         let token
         

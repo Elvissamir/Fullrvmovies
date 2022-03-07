@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const { connectToTestingDB, disconnectTestingDB } = require('../../testHelpers')
-const { doMigration } = require('../../../database/migrations')
+const { doMigration } = require('../../../database/migrationsHandler')
  
 describe('Database Population', () => {
     const mongooseModelSchema = {
@@ -13,16 +13,16 @@ describe('Database Population', () => {
 
     beforeAll(async () => {
         await connectToTestingDB()
-        await model.collection.deleteMany()
     })
 
     afterAll(async () => {
+        await model.collection.deleteMany()
         await disconnectTestingDB()
     })
 
     it ('Should populate the database using migrations', async () => {
         const data = [{ name: 'A' }, { name: 'B' }]
-        const migration = { model, data }
+        const migration = { model, data, name: 'Model' }
 
         await doMigration(migration)
 

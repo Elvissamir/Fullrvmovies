@@ -1,9 +1,9 @@
 require('dotenv').config()
 require('express-async-errors')
 const express = require('express')
-const { runMigrations } = require('./database/migrations')
 const app = express()
 const { connectToDB } = require('./startup/database')
+const { runMigrations } = require('./database/migrationsHandler')
 
 require('./startup/logging')()
 require('./startup/config')()

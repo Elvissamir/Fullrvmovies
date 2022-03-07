@@ -2,6 +2,7 @@ const request = require('supertest')
 const app = require('../../../app')
 const { Genre } = require('../../../models/Genre')
 const { User } = require('../../../models/User')
+const { connectToTestingDB, disconnectTestingDB } = require('../../testHelpers')
 
 describe('Auth middleware', () => {
     let token
@@ -12,11 +13,20 @@ describe('Auth middleware', () => {
                 .set('x-auth-token', token)
                 .send({ name: 'genreA' })
     }
+
+    beforeAll(async () => {
+        await connectToTestingDB()
+    })
+
+    afterAll(async () => {
+        await disconnectTestingDB()
+    })
     
     beforeEach(async () => {
         token = new User().generateAuthToken()
         await Genre.deleteMany()
     })
+
     afterEach(async () => await Genre.deleteMany())
 
     it("Should return 401 if no token is provided", async () => {

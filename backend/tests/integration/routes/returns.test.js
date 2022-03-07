@@ -5,6 +5,7 @@ const { Rental } = require('../../../models/Rental')
 const mongoose = require('mongoose')
 const moment = require('moment')
 const { Movie } = require('../../../models/Movie')
+const { connectToTestingDB, disconnectTestingDB } = require('../../testHelpers')
 
 describe('Route /api/returns', () => {
     let token
@@ -13,6 +14,14 @@ describe('Route /api/returns', () => {
     let movie
     let rental
     let data
+
+    beforeAll(async () => {
+        await connectToTestingDB()
+    })
+
+    afterAll(async () => {
+        await disconnectTestingDB()
+    })
 
     beforeEach(async () => {
         token = new User().generateAuthToken()

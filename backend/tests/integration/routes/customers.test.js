@@ -3,8 +3,17 @@ const mongoose = require('mongoose')
 const app = require('../../../app')
 const { Customer } = require("../../../models/Customer")
 const { User } = require('../../../models/User')
+const { connectToTestingDB, disconnectTestingDB } = require('../../testHelpers')
 
 describe('Route /api/customers', () => {
+    beforeAll(async () => {
+        await connectToTestingDB()
+    })
+
+    afterAll(async () => {
+        await disconnectTestingDB()
+    })
+
     afterEach(async () => {
         await Customer.deleteMany()
     })

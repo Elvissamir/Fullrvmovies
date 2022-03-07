@@ -4,10 +4,18 @@ const mongoose = require('mongoose')
 const { Movie } = require('../../../models/Movie')
 const { Genre } = require('../../../models/Genre')
 const { User } = require('../../../models/User')
+const { connectToTestingDB, disconnectTestingDB } = require('../../testHelpers')
 
 describe('Route /api/movies', () => {
-    describe('GET /', () => {
+    beforeAll(async () => {
+        await connectToTestingDB()
+    })
 
+    afterAll(async () => {
+        await disconnectTestingDB()
+    })
+
+    describe('GET /', () => {
         afterEach(async () => {
             await Genre.deleteMany()
             await Movie.deleteMany()

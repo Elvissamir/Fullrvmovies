@@ -4,8 +4,17 @@ const request = require('supertest')
 const app = require('../../../app')
 const { random } = require('lodash')
 const mongoose = require('mongoose')
+const { connectToTestingDB, disconnectTestingDB } = require('../../testHelpers')
 
 describe('Route /api/genres', () => {
+    beforeAll(async () => {
+        await connectToTestingDB()
+    })
+
+    afterAll(async () => {
+        await disconnectTestingDB()
+    })
+
     afterEach(async () => {
         await Genre.deleteMany()
     })

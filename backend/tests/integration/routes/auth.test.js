@@ -1,8 +1,16 @@
 const app = require('../../../app')
 const request = require('supertest')
 const { User } = require('../../../models/User')
+const { connectToTestingDB, disconnectTestingDB } = require('../../testHelpers')
 
 describe('Route POST /api/login', () => {
+    beforeAll(async () => {
+        await connectToTestingDB()
+    })
+
+    afterAll(async () => {
+        await disconnectTestingDB()
+    })
 
     afterEach(async () => {
         await User.deleteMany()
