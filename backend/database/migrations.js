@@ -14,17 +14,11 @@ const genres = [
     { name: 'Documentary' },
 ]
 
-const migrations = [
-    { name: 'Genres', model: Genre, data: genres },
-]
-
-const doMigration = async ({ model, data, name }) => {
-    winston.info(`Running migration for ${name} Model...`)
+const doMigration = async ({ model, data }) => {
     await model.collection.insertMany(data)
-    winston.info(`Finished migration for ${name} Model.`)
 }
 
-const runMigrations = async () => {
+const runMigrations = async (migrations) => {
     for (const migration of migrations) {
         try {
             await doMigration(migration)

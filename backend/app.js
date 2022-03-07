@@ -10,7 +10,10 @@ require('./startup/config')()
 require('./startup/cors')(app)
 require('./startup/prod')(app)
 require('./startup/routes')(app)
-connectToDB()
-//runMigrations()
+
+if (process.env.APP_ENV !== 'testing') {
+    connectToDB()
+    runMigrations()
+}
 
 module.exports = app

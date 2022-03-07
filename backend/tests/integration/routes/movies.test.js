@@ -4,7 +4,6 @@ const mongoose = require('mongoose')
 const { Movie } = require('../../../models/Movie')
 const { Genre } = require('../../../models/Genre')
 const { User } = require('../../../models/User')
-const { send } = require('express/lib/response')
 
 describe('Route /api/movies', () => {
     describe('GET /', () => {

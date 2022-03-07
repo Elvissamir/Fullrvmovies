@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "test": "jest --watchAll --runInBand --verbose --coverage"
+    "test": "APP_ENV=testing jest --watchAll --runInBand --verbose population.test.js --setupFiles dotenv/config"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -25,5 +25,8 @@
   "devDependencies": {
     "jest": "^27.5.1",
     "supertest": "^6.2.2"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
