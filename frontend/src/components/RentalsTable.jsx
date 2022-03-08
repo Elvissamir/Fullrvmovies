@@ -1,50 +1,32 @@
 import { PropTypes } from 'prop-types';
-import Table from './common/Table.jsx'
 import { Link } from 'react-router-dom';
 
 function RentalsTable ({ rentals, sortColumn, onSort }) {
-    const columns = [
-        {
-            label: 'Customer', 
-            value: 'customer', 
-            content: ({ customer }) => 
-                <Link 
-                    key={ customer._id } 
-                    className='text-blue-800 underline' 
-                    to={`/customer/${customer._id}`}>
-                    { customer.first_name }
-                </Link>
-        },
-        {
-            label: 'Title', 
-            value: 'title', 
-            content: ({ movie }) => <p>{ movie.title }</p>
-        },
-        {  
-            label: 'Rate', 
-            value: 'dailyRentalRate',
-            content: ({ movie }) => <p>{ movie.dailyRentalRate }</p>
-        }, 
-        {
-            label: "Out",
-            value: 'dateOut'
-        },
-        {
-            label: 'Returned',
-            value: 'dateReturned'
-        },
-        {
-            label: 'Fee',
-            value: 'rentalFee'
-        }
-    ]
-
     return (
-        <Table 
-            data={ rentals }
-            onSort={ onSort }
-            columns={ columns } 
-            sortColumn={ sortColumn } />
+        <table className='w-full table-auto'>
+            <thead>
+                <tr className='text-left'>
+                    <th className=''>Customer</th>
+                    <th>Title</th>
+                    <th>Rate</th>
+                    <th>Out</th>
+                    <th>Returned</th>
+                    <th>Fee</th>
+                </tr>
+            </thead>
+            <tbody>
+                { rentals.map(({ _id, customer, movie, dateOut, dateReturned, rentalFee }) => 
+                    <tr key={ _id }>
+                        <td>{ customer.first_name + ' ' + customer.last_name }</td>
+                        <td>{ movie.title.length < 20? movie.title : movie.title.slice(0, 20)+'...' }</td>
+                        <td>{ movie.dailyRentalRate }</td>
+                        <td>{ dateOut }</td>
+                        <td>{ dateReturned }</td>
+                        <td>{ rentalFee }</td>
+                    </tr> 
+                )}
+            </tbody>
+        </table>
     );
 }
 
