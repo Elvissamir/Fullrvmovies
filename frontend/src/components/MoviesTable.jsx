@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types'
-import Likes from './common/like.jsx'
-import Table from './common/table.jsx'
+import Table from './common/Table.jsx'
 import { Link } from 'react-router-dom';
 
-function MoviesTable ({ movies, sortColumn, onLike, onDelete, onSort }) {
+function MoviesTable ({ movies, sortColumn, onDelete, onSort }) {
     const columns = [
         {
             label: 'Title', 
@@ -42,7 +41,6 @@ function MoviesTable ({ movies, sortColumn, onLike, onDelete, onSort }) {
 MoviesTable.propTypes = {
     movies: PropTypes.array.isRequired,
     sortColumn: PropTypes.object.isRequired,
-    onLike: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     onSort: PropTypes.func.isRequired
 }

@@ -9,10 +9,10 @@ import { paginate } from "../utils/paginate"
 import { filterList } from '../utils/filterList'
 // Components
 import { Link } from 'react-router-dom'
-import MoviesTable from "./moviesTable"
-import FilterList from "./filterList"
-import Pagination from "./common/pagination"
-import SearchBox from './common/searchBox'
+import MoviesTable from "./MoviesTable"
+import FilterList from "./FilterList"
+import Pagination from "./common/Pagination"
+import SearchBox from './common/SearchBox'
 import { toast } from 'react-toastify';
 
 function Movies() {

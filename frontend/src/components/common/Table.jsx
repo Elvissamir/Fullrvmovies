@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types'
-import TableHeader from './tableHeader.jsx'
-import TableBody from './tableBody.jsx'
+import TableHeader from './TableHeader.jsx'
+import TableBody from './TableBody.jsx'
 
 function Table ({ data, columns, sortColumn, onSort }) {
     return (
-        <table className="table-fixed w-full">
+        <table data-testid="table-component" className="table-fixed w-full">
             <TableHeader 
                 sortColumn={ sortColumn }
                 onSort={ onSort }

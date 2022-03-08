@@ -3,15 +3,15 @@ import { useEffect } from 'react';
 import useUser from './components/hooks/useUser';
 import { UserContext } from './components/context/userContext';
 import { ToastContainer } from "react-toastify";
-import Nav from './components/nav'
-import Footer from './components/footer.jsx'
-import Movies from './components/movies.jsx'
-import Customers from './components/customers';
-import Rentals from './components/rentals';
-import NotFound from './components/notFound';
-import MovieForm from './components/movieForm';
-import LoginForm from './components/loginForm';
-import RegistrationForm from './components/registrationForm';
+import Nav from './components/Nav'
+import Footer from './components/Footer.jsx'
+import Movies from './components/Movies.jsx'
+import Customers from './components/Customers';
+import Rentals from './components/Rentals';
+import NotFound from './components/NotFound';
+import MovieForm from './components/MovieForm';
+import LoginForm from './components/LoginForm';
+import RegistrationForm from './components/RegistrationForm';
 import RequireAuth from './components/RequireAuth';
 import 'react-toastify/dist/ReactToastify.css'
 
