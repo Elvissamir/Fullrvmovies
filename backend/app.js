@@ -5,7 +5,7 @@ const app = express()
 const { connectToDB } = require('./startup/database')
 const { runMigrations } = require('./database/migrationsHandler')
 
-require('./startup/logging')()
+require('./startup/exceptionsHandler')()
 require('./startup/config')()
 require('./startup/cors')(app)
 require('./startup/prod')(app)
