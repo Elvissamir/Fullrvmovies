@@ -17,7 +17,10 @@ function RentalsTable ({ rentals, sortColumn, onSort }) {
             <tbody>
                 { rentals.map(({ _id, customer, movie, dateOut, dateReturned, rentalFee }) => 
                     <tr key={ _id }>
-                        <td>{ customer.first_name + ' ' + customer.last_name }</td>
+                        <td>
+                            <Link to={`/customers/${customer._id}`}></Link>
+                            { customer.first_name + ' ' + customer.last_name }
+                        </td>
                         <td>{ movie.title.length < 20? movie.title : movie.title.slice(0, 20)+'...' }</td>
                         <td>{ movie.dailyRentalRate }</td>
                         <td>{ dateOut }</td>
