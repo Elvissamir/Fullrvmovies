@@ -16,8 +16,11 @@ describe('Database Population', () => {
     })
 
     afterAll(async () => {
-        await model.collection.deleteMany()
         await disconnectTestingDB()
+    })
+
+    afterEach(async () => {
+        await model.collection.deleteMany()
     })
 
     it ('Should populate the database using migrations', async () => {
@@ -28,5 +31,24 @@ describe('Database Population', () => {
 
         const countAfter = await model.count()
         expect(countAfter).toBe(2)
+    })
+
+    it('Should delete all documents in the collection before each migration', async () => {
+        const initialData = [{ name: 'A' }, { name: 'B'}, {name: 'C'}]
+        await model.collection.insertMany(initialData)
+
+        const countBefore = await model.count()
+        expect(countBefore).toBe(3)
+
+        const data = [{ name: "New" }]
+        const migration = { model, data, name: 'Model' }
+
+        await doMigration(migration)
+
+        console.log('ENV', process.env.APP_ENV)
+
+        const newDocuments = await model.find()
+        expect(newDocuments.length).toBe(1)
+        expect(newDocuments[0].name).toBe('New')
     })
 })

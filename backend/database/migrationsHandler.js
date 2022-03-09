@@ -1,7 +1,14 @@
 const logger = require('../startup/logger')
 const { migrations } = require('../database/migrations') 
 
+const clearCollection = async (model) => {
+    logger.info(`Deleting all documents for ${model} model before migration`)
+    await model.collection.deleteMany()
+    logger.info("Finished deleting documents...")
+}
+
 const doMigration = async ({ model, data, name }) => {
+    await clearCollection(model)
     logger.info(`Running migration for ${name} model...`)
     await model.collection.insertMany(data)
     logger.info(`Finished migration for ${name} model...`)

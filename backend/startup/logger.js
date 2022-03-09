@@ -6,13 +6,12 @@ const logger = winston.createLogger({
     format: winston.format.json(),
     transports: [
         new winston.transports.File({filename: 'logfile.log' }),
+        new winston.transports.Console({
+            format: winston.format.simple(),
+            silent: process.env.APP_ENV === 'testing'? true:false,
+        })
     ]
 })
 
-if (process.env.NODE_ENV !== 'production') {
-    logger.add(new winston.transports.Console({
-      format: winston.format.simple(),
-    }));
-}
 
 module.exports = logger
