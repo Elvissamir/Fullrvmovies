@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const auth = require('../middleware/auth')
+const moment = require('moment')
 const { Rental, validateRental } = require('../models/Rental')
 const { Customer } = require('../models/Customer')
 const { Movie } = require('../models/Movie')
@@ -35,7 +36,7 @@ router.post('/', auth, async (req, res) => {
             _id: movie._id,
             title: movie.title,
             dailyRentalRate: movie.dailyRentalRate
-        }
+        },
     })
 
     rental.save()

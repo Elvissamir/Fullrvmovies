@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import useForm from './hooks/useForm'
 import { useNavigate } from 'react-router-dom';
 // Services
-import { rentalsEndpoint, saveRental } from '../services/rentalsService'
+import { saveRental } from '../services/rentalsService'
 import { getMovies } from '../services/moviesService'
 import { getCustomers } from '../services/customersService';
 // Components
@@ -65,7 +65,7 @@ function RentalsForm () {
 
         try {
             await saveRental(formData)
-            navigate('/', { replace: true })
+            navigate('/rentals', { replace: true })
         }
         catch (ex) {
             if (ex.response && ex.response.status >= 400 && ex.response.status < 500)

@@ -1,4 +1,5 @@
 import { PropTypes } from 'prop-types';
+import formatDate from '../utils/formatDate';
 import { Link } from 'react-router-dom';
 import Table from './common/Table';
 
@@ -27,17 +28,21 @@ function RentalsTable ({ rentals, sortColumn, onSort }) {
         },
         {
             label: 'Out',
-            value: 'dateOut'
+            value: 'dateOut',
+            content: rental => 
+                <p>{ rental.dateOut? formatDate(rental.dateOut) : '--'}</p>
         },
         {
             label: 'Returned',
             value: 'dateReturned',
             content: rental => 
-                <p>{ rental.dateReturned ? rental.dateReturned : '-'}</p>
+                <p>{ rental.dateReturned? formatDate(rental.dateReturned) : '--'}</p>
         },
         {
             label: 'Total',
-            value: 'rentalFee'
+            value: 'rentalFee',
+            content: rental => 
+                <p>{ rental.rentalFee? rental.rentalFee : '--' }</p>
         }
     ]
 
