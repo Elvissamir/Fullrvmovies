@@ -7,6 +7,12 @@ function getRentals () {
     return httpService.get(rentalsEndpoint)
 }
 
+function saveRental (rental) {
+    return httpService.post(rentalsEndpoint, rental)
+}
+
 export {
     getRentals,
+    saveRental,
+    rentalsEndpoint
 }

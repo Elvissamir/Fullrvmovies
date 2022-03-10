@@ -34,4 +34,5 @@ export {
     getMovieById,
     saveMovie,
     deleteMovieById,
+    moviesEndpoint
 }
