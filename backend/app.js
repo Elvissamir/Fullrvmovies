@@ -13,7 +13,7 @@ require('./startup/routes')(app)
 
 if (process.env.APP_ENV !== 'testing') {
     connectToDB()
-    // runMigrations()
+    runMigrations()
 }
 
 module.exports = app

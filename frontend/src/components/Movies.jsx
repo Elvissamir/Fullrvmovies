@@ -82,13 +82,6 @@ function Movies() {
     }
   }
 
-  const handleLike = (movie) => {
-    const index = movies.indexOf(movie)
-    const m = [...movies] 
-    m[index].liked = !m[index].liked
-    setMovies(m)
-  }
-
   const handlePageChange = page => {
     setCurrentPage(page)
   }   
@@ -146,7 +139,6 @@ function Movies() {
           <MoviesTable 
             movies={ data } 
             onSort={ handleSort }
-            onLike={ handleLike }
             onDelete={ handleDelete }
             sortColumn={ sortColumn } />
         </div>

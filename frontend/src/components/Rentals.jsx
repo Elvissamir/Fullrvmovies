@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import _ from 'lodash'
 import RentalsTable from './RentalsTable';
+import Pagination from './common/Pagination';
 
 function Rentals () {
     const rentalsArray = [
@@ -56,10 +58,39 @@ function Rentals () {
         }
     ]
 
-    const [ data, setData ] = useState(rentalsArray)
-    const [ sortColumn, setSortColumn ] = useState({ path: 'name', order: 'asc' })
+    const [ rentals, setRentals ] = useState(rentalsArray)
+    const [ pageSize, setPageSize ] = useState(5)
+    const [ currentPage, setCurrentPage ] = useState(1)
+    const [ sortColumn, setSortColumn ] = useState({ path: 'customer', order: 'asc' })
 
-    const handleSort = () => {
+    const sortRentalList = (data) => {
+        let list = []
+        
+        if (sortColumn.path === 'customer')
+            list = _.orderBy(data, item => item.customer.first_name, sortColumn.order)
+
+        else if (sortColumn.path === 'title' || sortColumn.path === 'dailyRentalRate')
+            list = _.orderBy(data, items => items.movie[sortColumn.path], sortColumn.order)
+            
+        else 
+            list = _.orderBy(data, sortColumn.path, sortColumn.order)
+
+        return list
+    }
+
+    const getPagedData = () => {
+        const sortedList = sortRentalList(rentals)
+
+        return { data: sortedList, totalCount: rentals.length }
+    }
+
+    const { data, totalCount } = getPagedData()
+
+    const handleSort = (column) => {
+        setSortColumn(column)
+    }
+
+    const handlePageChange = () => {
         
     }
 
@@ -74,6 +105,13 @@ function Rentals () {
                     onSort={ handleSort }
                     sortColumn={ sortColumn }>
                 </RentalsTable>
+            </div>
+            <div className="flex justify-center mt-4">
+                <Pagination 
+                    itemsCount={ totalCount } 
+                    pageSize={ pageSize } 
+                    currentPage={ currentPage }
+                    onPageChange={ handlePageChange } />
             </div>
         </div>
     )
