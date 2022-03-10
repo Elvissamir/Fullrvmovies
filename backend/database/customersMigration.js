@@ -5,31 +5,31 @@ const customersData = [
         first_name: 'Soromay', 
         last_name: 'Villareal',  
         isGold: true,
-        phone: '042434567'
+        phone: '04243456711'
     },
     { 
         first_name: 'Barbara', 
         last_name: 'Requena',  
         isGold: true,
-        phone: '042434584'
+        phone: '04243458411'
     },
     { 
         first_name: 'Jessica', 
         last_name: 'Torrealba',  
         isGold: false,
-        phone: '042434361'
+        phone: '04243436111'
     },
     { 
         first_name: 'Carlos', 
         last_name: 'Manzana',  
         isGold: false,
-        phone: '042498367'
+        phone: '04249836712'
     },
     { 
         first_name: 'Jose', 
         last_name: 'Tomato',  
         isGold: false,
-        phone: '042434532'
+        phone: '04243453213'
     },
 ]
 

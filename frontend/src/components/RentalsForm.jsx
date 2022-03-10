@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 // Services
 import { rentalsEndpoint, saveRental } from '../services/rentalsService'
 import { getMovies } from '../services/moviesService'
+import { getCustomers } from '../services/customersService';
 // Components
 import Form from './common/Form';
 import SelectField from './common/SelectField';
@@ -32,20 +33,30 @@ function RentalsForm () {
 
     useEffect(() => {
         const fetchMovies = async () => {
-            const movies = await getMovies()
-            setMovieOptions(mapDataToOptions(movies, "_id", "title"))
+            const { data: movies } = await getMovies()
+            setMovieOptions(mapDataToOptions(movies, '_id', 'title'))
         }
 
         const fetchCustomers = async () => {
-            await getCustomers()
+            const { data } = await getCustomers()
+            const customers =  data.map(customer => {
+                return { 
+                    _id: customer._id, 
+                    name: customer.first_name + ' ' + customer.last_name
+                }
+            })
+            setCustomerOptions(mapDataToOptions(customers, '_id', 'name'))
         }
+
+        fetchMovies()
+        fetchCustomers()
     }, [])
 
     
     const {
         formData,
         formErrors,
-        handleChange,
+        handleSelectChange,
         validate
     } = useForm(dataInit, formSchema)
 
@@ -54,7 +65,7 @@ function RentalsForm () {
 
         try {
             await saveRental(formData)
-            navigate(rentalsEndpoint, { replace: true })
+            navigate('/', { replace: true })
         }
         catch (ex) {
             if (ex.response && ex.response.status >= 400 && ex.response.status < 500)
@@ -68,12 +79,14 @@ function RentalsForm () {
                 id='customerId'
                 label='Customer'
                 options={ customerOptions }
+                handleSelectChange={ handleSelectChange }
                 error={ formErrors.customerId }>    
             </SelectField>
             <SelectField 
                 id='movieId'
                 label='Movie'
                 options={ movieOptions }
+                handleSelectChange={ handleSelectChange }
                 error={ formErrors.movieId }>    
             </SelectField>
             <FormFooter>

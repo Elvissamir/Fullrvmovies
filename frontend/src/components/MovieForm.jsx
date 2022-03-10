@@ -116,8 +116,7 @@ function MovieForm () {
                                 <input 
                                     onChange={ handleCheckboxChange }
                                     type="checkbox" 
-                                    id={genre._id}
-                                    name="genreIds" 
+                                    id='genreIds' 
                                     checked={ formData.genreIds.indexOf(genre._id) === -1? false:true}
                                     value={ genre._id } />
                                 <label 

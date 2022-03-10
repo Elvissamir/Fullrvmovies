@@ -1,15 +1,4 @@
-
-
-function FormField () {
-
-    // PROPS
-    // - label
-    // - id
-    // - type
-    // - handleChange (fn)
-    // - value --> formData.email
-    // - error --> comes from formErrors.field
-
+function CheckboxField () {
     return (
         <div className="form-field">
             <label className="form-label" htmlFor="email">
@@ -26,6 +15,4 @@ function FormField () {
     )
 }
 
-
-
-export default FormField
+export default CheckboxField
