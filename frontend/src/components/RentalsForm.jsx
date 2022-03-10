@@ -30,15 +30,6 @@ function RentalsForm () {
     const movies = [{ _id: 123, title: 'uno' }, { _id: 234, title: 'dos' }]
     const customers = [{ _id: 123, name: 'uno' }, { _id: 234, name: 'dos' }]
 
-    const mapDataToOptions = (data, valueName, properyName) => {
-        return data.map(item => {
-            return {
-                value: item[valueName], 
-                text: item[properyName]
-            }
-        })       
-    }
-
     mapDataToOptions(movies, "_id", "title")
     
     useEffect(() => {
