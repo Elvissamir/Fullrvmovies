@@ -2,6 +2,7 @@ import { useState } from 'react';
 import _ from 'lodash'
 import RentalsTable from './RentalsTable';
 import Pagination from './common/Pagination';
+import { paginate } from '../utils/paginate';
 
 function Rentals () {
     const rentalsArray = [
@@ -55,6 +56,57 @@ function Rentals () {
             dateOut: '10-03-2022',
             dateReturned: '',
             rentalFee: 3
+        },
+        {
+            _id: 132,
+            customer: { 
+                _id: 1, 
+                first_name: 'Alexandra',
+                last_name: 'Pereira',
+                phone: '123456567',
+                isGold: false
+            },
+            movie: {
+                title: 'Shrek',
+                dailyRentalRate: 4
+            },
+            dateOut: '10-04-2022',
+            dateReturned: '',
+            rentalFee: 1
+        },
+        {
+            _id: 132,
+            customer: { 
+                _id: 1, 
+                first_name: 'Katherin',
+                last_name: 'Aparicio',
+                phone: '123456567',
+                isGold: false
+            },
+            movie: {
+                title: 'Wonder Woman',
+                dailyRentalRate: 4
+            },
+            dateOut: '10-03-2022',
+            dateReturned: '',
+            rentalFee: 2
+        },
+        {
+            _id: 132,
+            customer: { 
+                _id: 1, 
+                first_name: 'Veronica',
+                last_name: 'Marron',
+                phone: '123456567',
+                isGold: false
+            },
+            movie: {
+                title: 'Wonder Woman',
+                dailyRentalRate: 4
+            },
+            dateOut: '10-03-2022',
+            dateReturned: '',
+            rentalFee: 2
         }
     ]
 
@@ -71,7 +123,7 @@ function Rentals () {
 
         else if (sortColumn.path === 'title' || sortColumn.path === 'dailyRentalRate')
             list = _.orderBy(data, items => items.movie[sortColumn.path], sortColumn.order)
-            
+
         else 
             list = _.orderBy(data, sortColumn.path, sortColumn.order)
 
@@ -80,8 +132,9 @@ function Rentals () {
 
     const getPagedData = () => {
         const sortedList = sortRentalList(rentals)
+        const paginatedList = paginate(sortedList, currentPage, pageSize)
 
-        return { data: sortedList, totalCount: rentals.length }
+        return { data: paginatedList, totalCount: rentals.length }
     }
 
     const { data, totalCount } = getPagedData()
@@ -90,8 +143,8 @@ function Rentals () {
         setSortColumn(column)
     }
 
-    const handlePageChange = () => {
-        
+    const handlePageChange = page => {
+        setCurrentPage(page)
     }
 
     return (
