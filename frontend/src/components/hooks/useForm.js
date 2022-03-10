@@ -68,6 +68,4 @@ function useForm (dataInit, formSchema) {
     }
 }
 
-export {
-    useForm
-}
+export default useForm

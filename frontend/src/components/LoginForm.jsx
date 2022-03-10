@@ -1,5 +1,5 @@
 import Joi from 'joi'
-import { useForm } from './hooks/useForm'
+import useForm from './hooks/useForm'
 import { login } from '../services/usersService';
 import { toast } from 'react-toastify';
 import { useContext } from 'react';
@@ -49,7 +49,7 @@ function LoginForm () {
     }
 
     return (
-        <div className="w-6/12 form-wrapper">
+        <div className="form-wrapper w-6/12">
             <h1 className="form-title">Login</h1>
             <form onSubmit={ handleSubmit } className="form">
                 <div className="form-field">

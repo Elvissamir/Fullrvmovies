@@ -8,6 +8,7 @@ import Footer from './components/Footer.jsx'
 import Movies from './components/Movies.jsx'
 import Customers from './components/Customers';
 import Rentals from './components/Rentals';
+import RentalsForm from './components/RentalsForm';
 import NotFound from './components/NotFound';
 import MovieForm from './components/MovieForm';
 import LoginForm from './components/LoginForm';
@@ -52,6 +53,7 @@ function App() {
               <Route path='/movies/:id' element={<MovieForm />}></Route>
               <Route path='/customers' element={ <Customers /> }></Route>
               <Route path='/rentals' element={ <Rentals /> }></Route>
+              <Route path='/rentals/new' element={<RentalsForm></RentalsForm>}></Route>
               <Route path='/' element={ <Movies /> }></Route>
               <Route path='*' element={ <NotFound /> }></Route>
             </Routes>

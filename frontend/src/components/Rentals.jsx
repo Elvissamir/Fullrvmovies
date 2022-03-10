@@ -3,6 +3,8 @@ import _ from 'lodash'
 import RentalsTable from './RentalsTable';
 import Pagination from './common/Pagination';
 import { paginate } from '../utils/paginate';
+import { useEffect } from 'react';
+import { getRentals } from '../services/rentalsService';
 
 function Rentals () {
     const rentalsArray = [
@@ -110,7 +112,17 @@ function Rentals () {
         }
     ]
 
-    const [ rentals, setRentals ] = useState(rentalsArray)
+
+    useEffect(() => {
+        const fetchRental = async () => {
+            const { data } = await getRentals()
+            console.log(data)
+        }
+
+        fetchRental()
+    }, [])
+
+    const [ rentals, setRentals ] = useState([])
     const [ pageSize, setPageSize ] = useState(5)
     const [ currentPage, setCurrentPage ] = useState(1)
     const [ sortColumn, setSortColumn ] = useState({ path: 'customer', order: 'asc' })

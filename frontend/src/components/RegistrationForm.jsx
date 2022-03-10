@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Joi from 'joi'
 import { register } from '../services/usersService';
-import { useForm } from "./hooks/useForm"
+import useForm from "./hooks/useForm"
 import { UserContext } from './context/userContext';
 import { toast } from 'react-toastify';
 

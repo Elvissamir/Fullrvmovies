@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm } from "./hooks/useForm"
+import useForm from "./hooks/useForm"
 import Joi from 'joi';
 import { useState, useEffect } from 'react';
 import { getGenres } from "../services/genresService";
