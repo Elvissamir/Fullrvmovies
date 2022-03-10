@@ -12,6 +12,8 @@ import SelectField from './common/SelectField';
 import FormButton from './common/FormButton';
 import FormFooter from './common/FormFooter';
 import { toast } from 'react-toastify';
+// Utils
+import mapDataToOptions from '../utils/mapDataToOptions';
 
 function RentalsForm () {
     const formSchema = {
@@ -25,20 +27,17 @@ function RentalsForm () {
     }
 
     const navigate = useNavigate()
-    //const [ movies, setMovies ] = useState([])
+    const [ movieOptions, setMovieOptions ] = useState([])
+    const [ customerOptions, setCustomerOptions ] = useState([])
 
-    const movies = [{ _id: 123, title: 'uno' }, { _id: 234, title: 'dos' }]
-    const customers = [{ _id: 123, name: 'uno' }, { _id: 234, name: 'dos' }]
-
-    mapDataToOptions(movies, "_id", "title")
-    
     useEffect(() => {
         const fetchMovies = async () => {
-            await getMovies()
+            const movies = await getMovies()
+            setMovieOptions(mapDataToOptions(movies, "_id", "title"))
         }
 
         const fetchCustomers = async () => {
-            // await getCustomers()
+            await getCustomers()
         }
     }, [])
 
@@ -68,13 +67,13 @@ function RentalsForm () {
             <SelectField 
                 id='customerId'
                 label='Customer'
-                options={ customers }
+                options={ customerOptions }
                 error={ formErrors.customerId }>    
             </SelectField>
             <SelectField 
                 id='movieId'
                 label='Movie'
-                options={ movies }
+                options={ movieOptions }
                 error={ formErrors.movieId }>    
             </SelectField>
             <FormFooter>
