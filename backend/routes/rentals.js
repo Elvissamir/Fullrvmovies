@@ -1,6 +1,5 @@
 const router = require('express').Router()
 const auth = require('../middleware/auth')
-const moment = require('moment')
 const { Rental, validateRental } = require('../models/Rental')
 const { Customer } = require('../models/Customer')
 const { Movie } = require('../models/Movie')
