@@ -1,0 +1,16 @@
+
+.table {
+    border: 0.125rem solid lightgray;
+}
+
+thead tr th {
+    border: 0.125rem solid lightgray;
+    padding: 0.25rem;
+    text-align: center;
+}
+
+tbody tr td {
+    border: 0.125rem solid lightgray;
+    padding: 0.125rem;
+    text-align: center;
+}

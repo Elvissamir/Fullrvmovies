@@ -45,7 +45,6 @@ function Movies() {
   }, [])
 
   const search = (query, array) => {
-    console.log('Search')
     return array.filter(item => item.title.toLowerCase().startsWith(query.toLowerCase()))
   }
 

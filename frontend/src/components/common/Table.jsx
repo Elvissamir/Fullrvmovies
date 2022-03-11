@@ -4,7 +4,7 @@ import TableBody from './TableBody.jsx'
 
 function Table ({ data, columns, sortColumn, onSort }) {
     return (
-        <table data-testid="table-component" className="table-auto w-full">
+        <table className="table table-auto w-full">
             <TableHeader 
                 sortColumn={ sortColumn }
                 onSort={ onSort }

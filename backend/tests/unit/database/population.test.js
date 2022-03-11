@@ -45,8 +45,6 @@ describe('Database Population', () => {
 
         await doMigration(migration)
 
-        console.log('ENV', process.env.APP_ENV)
-
         const newDocuments = await model.find()
         expect(newDocuments.length).toBe(1)
         expect(newDocuments[0].name).toBe('New')

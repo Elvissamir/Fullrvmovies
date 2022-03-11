@@ -16,7 +16,6 @@ function Rentals () {
     useEffect(() => {
         const fetchRental = async () => {
             const { data } = await getRentals()
-            console.log(data)
             setRentals(data)
         }
 

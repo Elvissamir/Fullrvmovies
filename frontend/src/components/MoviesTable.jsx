@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Table from './common/Table.jsx'
 import { Link } from 'react-router-dom';
 
-function MoviesTable ({ movies, sortColumn, onDelete, onSort }) {
+function MoviesTable ({ movies, sortColumn, onDelete, onSort }) { 
     const columns = [
         {
             label: 'Title', 
@@ -23,8 +23,11 @@ function MoviesTable ({ movies, sortColumn, onDelete, onSort }) {
         {
             key: 'delete', 
             content: movie => 
-                <button key={ movie._id } onClick={ () => onDelete(movie) } className="bg-red-700 px-2 py-1 font-black text-white">
-                    Delete
+                <button 
+                    key={ movie._id } 
+                    onClick={ () => onDelete(movie) } 
+                    className="button-sm bg-red-600 font-black text-white">
+                        Delete
                 </button>
         }
     ]

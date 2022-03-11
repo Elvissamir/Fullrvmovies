@@ -12,7 +12,7 @@ function TableBody ({ data, columns }) {
             { data.map((item, itemIndex) => (
                 <tr className="text-left" key={ itemIndex }>
                     { columns.map((column, columnIndex) => 
-                        <td key={ columnIndex }>
+                        <td className='py-2' key={ columnIndex }>
                             { renderCell(item, column)}
                         </td>    
                     )}

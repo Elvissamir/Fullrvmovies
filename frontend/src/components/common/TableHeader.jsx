@@ -16,7 +16,7 @@ function TableHeader ({ columns, sortColumn, onSort }) {
                     <th 
                         key={ index } 
                         onClick={ () => raiseSort(p.value) } 
-                        className="text-left">
+                        className="">
                             <p>{ p.label }</p>
                     </th> 
                  ))}
