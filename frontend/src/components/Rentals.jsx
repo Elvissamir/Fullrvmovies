@@ -4,13 +4,17 @@ import RentalsTable from './RentalsTable';
 import Pagination from './common/Pagination';
 import { paginate } from '../utils/paginate';
 import { useEffect } from 'react';
-import { getRentals } from '../services/rentalsService';
+import { getRentals, closeRental } from '../services/rentalsService';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 function Rentals () {
     const [ rentals, setRentals ] = useState([])
     const [ pageSize, setPageSize ] = useState(5)
     const [ currentPage, setCurrentPage ] = useState(1)
     const [ sortColumn, setSortColumn ] = useState({ path: 'customer', order: 'asc' })
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         const fetchRental = async () => {
@@ -46,13 +50,24 @@ function Rentals () {
     }
 
     const { data, totalCount } = getPagedData()
+    
+    const handlePageChange = page => {
+        setCurrentPage(page)
+    }
 
     const handleSort = (column) => {
         setSortColumn(column)
     }
 
-    const handlePageChange = page => {
-        setCurrentPage(page)
+    const handleReturn = async ({ customer, movie }) => {
+        try {
+            await closeRental({ customerId: customer._id, movieId: movie._id })
+            navigate('/rentals', {replace: true})
+        }
+        catch (ex) {
+            if (ex.response && ex.response.status >= 400 && ex.response.status < 500)
+                toast.error(`${ex.response.status} ${ex.response.data}`)
+        }
     }
 
     return (
@@ -63,8 +78,9 @@ function Rentals () {
             <div className='mt-8'>
                 <RentalsTable 
                     rentals={ data }
+                    sortColumn={ sortColumn }
                     onSort={ handleSort }
-                    sortColumn={ sortColumn }>
+                    onReturn={ handleReturn }>
                 </RentalsTable>
             </div>
             <div className="flex justify-center mt-4">

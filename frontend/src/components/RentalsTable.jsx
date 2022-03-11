@@ -1,10 +1,9 @@
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 import formatDate from '../utils/formatDate';
 import { Link } from 'react-router-dom';
 import Table from './common/Table';
 
-function RentalsTable ({ rentals, sortColumn, onSort }) {
-
+function RentalsTable ({ rentals, sortColumn, onSort, onReturn }) {
     const columns = [
         { 
             label: 'Customer',
@@ -18,7 +17,7 @@ function RentalsTable ({ rentals, sortColumn, onSort }) {
             label: 'Title',
             value: 'title',
             content: ({ movie }) => 
-                <p>{ movie.title.length < 20? movie.title : movie.title.slice(0, 13) + '...' }</p>
+                <p>{ movie.title.length < 16? movie.title : movie.title.slice(0, 13) + '...' }</p>
         },
         {
             label: 'Rate',
@@ -42,7 +41,21 @@ function RentalsTable ({ rentals, sortColumn, onSort }) {
             label: 'Total',
             value: 'rentalFee',
             content: rental => 
-                <p>{ rental.rentalFee? rental.rentalFee : '--' }</p>
+                <p>{ rental.rentalFee? rental.rentalFee + '$' : '--' }</p>
+        },
+        {
+            key: 'markAsReturned', 
+            content: rental => 
+                <div>
+                    { !rental.dateReturned?  
+                        <button 
+                            key={ rental._id } 
+                            onClick={ () => onReturn(rental) } 
+                            className="button-sm action-button">
+                                Return
+                        </button> : <p>--</p>
+                    }
+                </div>                
         }
     ]
 

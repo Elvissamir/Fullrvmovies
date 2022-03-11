@@ -3,6 +3,10 @@
     @apply font-black py-2 px-4 rounded
 }
 
+.button-sm {
+    @apply font-black py-1 px-2 rounded text-sm
+}
+
 .action-button {
     background-color: var(--active-color);
     color: white;
