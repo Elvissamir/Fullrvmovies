@@ -6,6 +6,7 @@ import { paginate } from '../utils/paginate';
 import { useEffect } from 'react';
 import { getRentals, closeRental } from '../services/rentalsService';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 function Rentals () {
     const [ rentals, setRentals ] = useState([])
@@ -46,6 +47,11 @@ function Rentals () {
     }
 
     const { data, totalCount } = getPagedData()
+
+    const rentalsCountMessage = () => {
+        const countMessage = `Showing ${totalCount} movies in the database`;
+        return <p>{ countMessage }</p>;
+      };
     
     const handlePageChange = page => {
         setCurrentPage(page)
@@ -69,26 +75,50 @@ function Rentals () {
         }
     }
 
+    const renderTableBlock = () => {
+        return (
+            <>
+                <div>
+                    <Link 
+                        to='/rentals/new' 
+                        className='button action-button'>New Rental</Link>
+                </div>
+                <div>
+                    <div className="mt-8 text-center">{ rentalsCountMessage() }</div>
+                </div>
+                <div className='mt-4'>
+                    <RentalsTable 
+                        rentals={ data }
+                        sortColumn={ sortColumn }
+                        onSort={ handleSort }
+                        onReturn={ handleReturn }>
+                    </RentalsTable>
+                </div>
+                <div className="flex justify-center mt-4">
+                    <Pagination 
+                        itemsCount={ totalCount } 
+                        pageSize={ pageSize } 
+                        currentPage={ currentPage }
+                        onPageChange={ handlePageChange } />
+                </div>
+            </>
+        )
+    }
+
+    const renderNoDataBlock = () => {
+        return (
+            <div className='flex flex-col justify-center mt-8'>
+                <Link 
+                    to='/rentals/new' 
+                    className='button action-button mx-auto'>New Rental</Link>
+                <p className='text-center mt-8'>There are no rentals to show</p>
+            </div>
+        )
+    }
+    
     return (
         <div className="flex flex-col mt-8">
-            <div className='flex'>
-                <button className='button action-button'>New Rental</button>
-            </div>
-            <div className='mt-8'>
-                <RentalsTable 
-                    rentals={ data }
-                    sortColumn={ sortColumn }
-                    onSort={ handleSort }
-                    onReturn={ handleReturn }>
-                </RentalsTable>
-            </div>
-            <div className="flex justify-center mt-4">
-                <Pagination 
-                    itemsCount={ totalCount } 
-                    pageSize={ pageSize } 
-                    currentPage={ currentPage }
-                    onPageChange={ handlePageChange } />
-            </div>
+            { rentals.length === 0? renderNoDataBlock() : renderTableBlock()}
         </div>
     )
 }

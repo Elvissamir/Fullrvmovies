@@ -80,7 +80,6 @@ function MovieForm () {
             fetchMovie()
         else
             clearIdField()
-
         fetchGenres()
     }, [])
 
@@ -98,7 +97,7 @@ function MovieForm () {
     }
     
     return (
-        <div className="form-wrapper w-6/12">
+        <div className="form-wrapper w-7/12">
             <h1 className="form-title">Movie Form</h1>
             <form onSubmit={ handleSubmit } className="form">
                 <div className="form-field">

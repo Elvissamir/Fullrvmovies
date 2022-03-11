@@ -43,7 +43,8 @@
 }
 
 .form-button {
-    @apply font-black py-2 px-4 rounded bg-blue-700 text-white
+    background-color: var(--active-color);
+    @apply font-black py-2 px-4 rounded text-white
 }
 
 .form-error {

@@ -4,7 +4,10 @@ import { NavLink } from "react-router-dom"
 
 function Nav () {
     const { currentUser, logoutUser } = useContext(UserContext)
-    const menuLinks = [{ name: 'Movies', url: '/movies' }]
+    const menuLinks = [
+        { name: 'Movies', url: '/movies' },
+        { name: 'Rentals', url: '/rentals' }
+    ]
 
     const renderAuth = () => {
         const items = [
@@ -30,7 +33,7 @@ function Nav () {
             <li className="flex items-center ml-4">
                 <div className="h-8 w-8 rounded-full bg-green-400"></div>
                 <div className="flex ml-2">{ currentUser.first_name }</div>
-                <button onClick={ logoutUser } className="ml-4 button bg-blue-400">Logout</button>
+                <button onClick={ logoutUser } className="ml-4 button action-button">Logout</button>
             </li>
         )
     }

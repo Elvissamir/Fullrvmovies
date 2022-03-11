@@ -4,7 +4,7 @@ const customersMigration = require('./customersMigration')
 
 const migrations = [
     genresMigration,
-    moviesMigration,
+    //moviesMigration,
     customersMigration
 ]
 

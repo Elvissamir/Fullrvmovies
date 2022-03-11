@@ -80,11 +80,11 @@ const moviesData = [
         title: 'Karate Kid', 
         genres: [
             {
-                _id: "6225f0de8a57008e6a0754fb",
+                _id: "622a5d5f7a9ed2be55a90d6b",
                 name: "Action"
             }, 
             {
-                _id: "6225f0de8a57008e6a0754f9",
+                _id: "622a5d5f7a9ed2be55a90d69",
                 name: "Romance"
             }
         ],
@@ -95,11 +95,11 @@ const moviesData = [
         title: 'Shrek', 
         genres: [
             {
-                _id: "622a5d12f278c4d5bcf8fc3e",
+                _id: "622a5d5f7a9ed2be55a90d6c",
                 name: "Animation"
             }, 
             {
-                _id: "6225f0de8a57008e6a0754f9",
+                _id: "622a5d5f7a9ed2be55a90d69",
                 name: "Romance"
             }
         ],
@@ -110,11 +110,11 @@ const moviesData = [
         title: 'The percs of being a wallflower', 
         genres: [
             {
-                _id: "622a5c8a88f28fea0529e23a",
+                _id: "622a5d5f7a9ed2be55a90d6a",
                 name: "Drama"
             }, 
             {
-                _id: "6225f0de8a57008e6a0754f9",
+                _id: "622a5d5f7a9ed2be55a90d69",
                 name: "Romance"
             }
         ],
@@ -125,7 +125,7 @@ const moviesData = [
         title: 'The pursuit of happyness', 
         genres: [
             {
-                _id: "622a5c8a88f28fea0529e23a",
+                _id: "622a5d5f7a9ed2be55a90d6a",
                 name: "Drama"
             }, 
         ],

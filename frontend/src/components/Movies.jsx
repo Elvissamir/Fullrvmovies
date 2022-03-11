@@ -105,50 +105,58 @@ function Movies() {
     return <p>{ countMessage }</p>;
   };
 
-  if (movies.length === 0)
+  const renderNoDataBlock = () => {
     return  (
-        <div className="mt-8 mx-auto">
-          {
-            currentUser &&  <div className="flex justify-center">
-                <Link className="button action-button" to='/movies/new'>New Movie</Link>
-              </div>
-          }
-          <div className="text-center mt-8">There are no movies to show</div>
-        </div>)
+      <div className="mt-8 mx-auto">
+        {
+          currentUser &&  <div className="flex justify-center">
+              <Link className="button action-button" to='/movies/new'>New Movie</Link>
+            </div>
+        }
+        <div className="text-center mt-8">There are no movies to show</div>
+      </div>)
+  }
 
+  const renderTableBlock = () => {
+    return (
+      <div className="flex justify-between mt-8 w-full">
+        <div className="flex">
+          <FilterList 
+            activeFilter={ currentFilter }
+            onSelectFilter={ handleChangeGenreFilter }
+            filters={ genreFilters } />
+        </div>
+        <div className="flex flex-col w-9/12">
+            {
+              currentUser &&  <div className="flex">
+                  <Link className="button action-button" to='/movies/new'>New Movie</Link>
+                </div>
+            }
+          <div className="flex mt-4">
+            <SearchBox query={ searchQuery } onChange={ handleSearch } />
+          </div>
+          <div className="mt-4 text-left">{ moviesCountMessage() }</div>
+          <div className="mt-4">
+            <MoviesTable 
+              movies={ data } 
+              onSort={ handleSort }
+              onDelete={ handleDelete }
+              sortColumn={ sortColumn } />
+          </div>
+          <div className="flex justify-center mt-4">
+            <Pagination 
+              itemsCount={ totalCount } 
+              pageSize={ pageSize } 
+              currentPage={ currentPage }
+              onPageChange={ handlePageChange } />
+          </div>
+        </div>
+      </div>)
+  }
+   
   return (
-    <div className="flex justify-between mt-8 w-full">
-      <div className="flex">
-        <FilterList 
-          activeFilter={ currentFilter }
-          onSelectFilter={ handleChangeGenreFilter }
-          filters={ genreFilters } />
-      </div>
-      <div className="flex flex-col w-9/12">
-          {
-            currentUser &&  <div className="flex justify-center">
-                <Link className="button action-button" to='/movies/new'>New Movie</Link>
-              </div>
-          }
-        <div className="flex mt-4">
-          <SearchBox query={ searchQuery } onChange={ handleSearch } />
-        </div>
-        <div className="mt-4 text-left">{ moviesCountMessage() }</div>
-        <div className="mt-4">
-          <MoviesTable 
-            movies={ data } 
-            onSort={ handleSort }
-            onDelete={ handleDelete }
-            sortColumn={ sortColumn } />
-        </div>
-        <div className="flex justify-center mt-4">
-          <Pagination 
-            itemsCount={ totalCount } 
-            pageSize={ pageSize } 
-            currentPage={ currentPage }
-            onPageChange={ handlePageChange } />
-        </div>
-      </div>
+    <div>
+      { movies.length === 0? renderNoDataBlock() : renderTableBlock() }
     </div>
   );
 }
