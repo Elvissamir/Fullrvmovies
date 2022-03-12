@@ -43,15 +43,25 @@ function useForm (dataInit, formSchema) {
         const data = { ...formData }
 
         if (input.checked) {
-            const exists = data[input.id].indexOf(input.value)
-            if (exists === -1) {
-                data[input.id].push(input.value)
-                setFormData(data)
+            if (Array.isArray(data[input.id])) {
+                const exists = data[input.id].indexOf(input.value)
+                if (exists === -1) {
+                    data[input.id].push(input.value)
+                }
             }
+            else {
+                data[input.id] = true
+            }
+            setFormData(data)
         }
         else {
-            const result = data[input.id].filter(value => value !== input.value)
-            data[input.id] = result
+            if (Array.isArray(data[input.id])) {
+                const result = data[input.id].filter(value => value !== input.value)
+                data[input.id] = result
+            }
+            else {     
+                data[input.id] = false
+            }
             setFormData(data)
         }
     }
