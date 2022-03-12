@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { getCustomers } from '../services/customersService';
 import { paginate } from '../utils/paginate';
 import CustomersTable from './CustomersTable'
+import { Link } from 'react-router-dom';
 
 function Customers () {
     const [ customers, setCustomers ] = useState([])
@@ -28,13 +29,8 @@ function Customers () {
     }
 
     const getPagedData = () => {
-        // copy customers
         const list = [ ...customers ]
-
-        // sort
         const sortedList = sortCustomersList(list)
-
-        // paginate
         const paginatedList = paginate(sortedList, currentPage, pageSize)
 
         return { data: paginatedList, totalCount: customers.length }
@@ -42,17 +38,39 @@ function Customers () {
 
     const { data, totalCount } = getPagedData()
 
-    // HANDLE DATA
     const handleSort = sortColumn => {
         setSortColumn(sortColumn)
     }
-    
+
+    const renderNoDataBlock = () => {
+        return (
+            <div className='flex flex-col justify-center mt-8'>
+                <Link 
+                    to='/customers/new' 
+                    className='button action-button mx-auto'>New Customer</Link>
+                <p className='text-center mt-8'>There are no customers to show</p>
+            </div>
+        )
+    }
+
+    const renderTableBlock = () => {
+        return (
+            <>
+                <div>
+                    <Link to='/customers/new' className='button action-button mx-auto'>New Customer</Link>
+                </div>
+                <div className='mt-8'>
+                    <CustomersTable 
+                        customers={ data }
+                        sortColumn={ sortColumn }
+                        onSort={ handleSort }></CustomersTable>
+                </div>
+            </>)
+    }
+
     return (
-        <div className='mt-8'>
-            <CustomersTable 
-                customers={ data }
-                sortColumn={ sortColumn }
-                onSort={ handleSort }></CustomersTable>
+        <div className="flex flex-col mt-8">
+            { customers.length === 0? renderNoDataBlock() : renderTableBlock()}
         </div>
     )
 }
