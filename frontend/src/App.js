@@ -15,6 +15,7 @@ import LoginForm from './components/LoginForm';
 import RegistrationForm from './components/RegistrationForm';
 import RequireAuth from './components/RequireAuth';
 import 'react-toastify/dist/ReactToastify.css'
+import CustomersForm from './components/CustomersForm';
 
 function App() { 
   const { 
@@ -36,12 +37,12 @@ function App() {
           <div className='app-nav'>
             < Nav />
           </div>
+
           <div className='app-content-container min-h-screen w-10/12 mx-auto px-2'>
             <Routes>
-
-              <Route path='/login' element={<LoginForm />}></Route>
-              <Route path='/register' element={<RegistrationForm/>}></Route> 
-              <Route path='/movies' element={<Movies />}></Route>
+              <Route path='/login' element={<LoginForm />} />
+              <Route path='/register' element={<RegistrationForm/>} />
+              <Route path='/movies' element={<Movies />} />
 
               <Route 
                 path='/movies/new' 
@@ -50,15 +51,17 @@ function App() {
                     <MovieForm />
                   </RequireAuth>} />
 
-              <Route path='/movies/:id' element={<MovieForm />}></Route>
-              <Route path='/customers' element={ <Customers /> }></Route>
-              <Route path='/rentals' element={ <Rentals /> }></Route>
-              <Route path='/rentals/new' element={<RentalsForm></RentalsForm>}></Route>
-              <Route path='/' element={ <Movies /> }></Route>
-              <Route path='*' element={ <NotFound /> }></Route>
+              <Route path='/movies/:id' element={<MovieForm />} />
+              <Route path='/customers' element={ <Customers /> } />
+              <Route path='/customers/new' element={ <CustomersForm /> } />
+              <Route path='/rentals' element={ <Rentals /> } />
+              <Route path='/rentals/new' element={<RentalsForm></RentalsForm>} />
+              <Route path='/' element={ <Movies /> } />
+              <Route path='*' element={ <NotFound /> } />
             </Routes>
           </div>
         </UserContext.Provider>
+
         <div className='app-footer'>
           <Footer />
         </div>
