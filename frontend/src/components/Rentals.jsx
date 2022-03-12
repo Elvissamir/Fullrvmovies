@@ -51,7 +51,7 @@ function Rentals () {
     const rentalsCountMessage = () => {
         const countMessage = `Showing ${totalCount} movies in the database`;
         return <p>{ countMessage }</p>;
-      };
+    };
     
     const handlePageChange = page => {
         setCurrentPage(page)

@@ -5,6 +5,7 @@ import { getCustomers } from '../services/customersService';
 import { paginate } from '../utils/paginate';
 import CustomersTable from './CustomersTable'
 import { Link } from 'react-router-dom';
+import Pagination from './common/Pagination';
 
 function Customers () {
     const [ customers, setCustomers ] = useState([])
@@ -38,8 +39,17 @@ function Customers () {
 
     const { data, totalCount } = getPagedData()
 
+    const customersCountMessage = () => {
+        const countMessage = `Showing ${totalCount} customers in the database`;
+        return <p>{ countMessage }</p>;
+    };
+
     const handleSort = sortColumn => {
         setSortColumn(sortColumn)
+    }
+
+    const handlePageChange = page => {
+        setCurrentPage(page)
     }
 
     const renderNoDataBlock = () => {
@@ -59,11 +69,21 @@ function Customers () {
                 <div>
                     <Link to='/customers/new' className='button action-button mx-auto'>New Customer</Link>
                 </div>
-                <div className='mt-8'>
+                <div className='mt-8 text-center'>
+                    { customersCountMessage() }
+                </div>
+                <div className='mt-4'>
                     <CustomersTable 
                         customers={ data }
                         sortColumn={ sortColumn }
                         onSort={ handleSort }></CustomersTable>
+                </div>
+                <div className='mt-4 flex justify-center'>
+                    <Pagination 
+                        itemsCount={ totalCount }
+                        currentPage={ currentPage }
+                        pageSize={ pageSize }
+                        onPageChange={ handlePageChange }  />
                 </div>
             </>)
     }
