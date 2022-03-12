@@ -53,7 +53,12 @@ function App() {
 
               <Route path='/movies/:id' element={<MovieForm />} />
               <Route path='/customers' element={ <Customers /> } />
-              <Route path='/customers/new' element={ <CustomersForm /> } />
+              <Route 
+                path='/customers/new' 
+                element={ 
+                  <RequireAuth redirectTo='/login' destination='/customers/new'>
+                    <CustomersForm />
+                  </RequireAuth> } />
               <Route path='/rentals' element={ <Rentals /> } />
               <Route path='/rentals/new' element={<RentalsForm></RentalsForm>} />
               <Route path='/' element={ <Movies /> } />

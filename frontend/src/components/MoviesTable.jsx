@@ -2,8 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types'
 import Table from './common/Table.jsx'
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { UserContext } from './context/userContext';
 
 function MoviesTable ({ movies, sortColumn, onDelete, onSort }) { 
+
+    const { currentUser } = useContext(UserContext)
+
+    const renderDeleteButton = (movie) => {
+        return (
+            <button 
+                key={ movie._id } 
+                onClick={ () => onDelete(movie) } 
+                className="button-sm bg-red-600 font-black text-white">
+                    Delete
+            </button>
+        )
+    }
+
     const columns = [
         {
             label: 'Title', 
@@ -23,12 +39,9 @@ function MoviesTable ({ movies, sortColumn, onDelete, onSort }) {
         {
             key: 'delete', 
             content: movie => 
-                <button 
-                    key={ movie._id } 
-                    onClick={ () => onDelete(movie) } 
-                    className="button-sm bg-red-600 font-black text-white">
-                        Delete
-                </button>
+                <div>
+                    { currentUser && currentUser.isAdmin? renderDeleteButton(movie) : "-"}
+                </div>
         }
     ]
 
