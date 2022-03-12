@@ -5,6 +5,10 @@ import { register } from '../services/usersService';
 import useForm from "./hooks/useForm"
 import { UserContext } from './context/userContext';
 import { toast } from 'react-toastify';
+import Form from './common/Form';
+import InputField from './common/InputField';
+import FormFooter from './common/FormFooter';
+import FormButton from './common/FormButton';
 
 function RegistrationForm () {
     const navigate = useNavigate()
@@ -52,44 +56,39 @@ function RegistrationForm () {
     }
 
     return (
-        <div className="form-wrapper w-6/12">
-            <h1 className="form-title">Register</h1>
-            <form onSubmit={ handleSubmit } className="form">
-                <div className="form-field">
-                    <label className="form-label" htmlFor="first_name">
-                        First name
-                    </label>
-                    <input onChange={ handleChange } className="form-input" value={ formData.firs_name } id="first_name" type='text' />
-                    { formErrors.first_name && <p className="form-error">{ formErrors.first_name }</p> }
-                </div>
-                <div className="form-field">
-                    <label className="form-label" htmlFor="last_name">
-                        Last name
-                    </label>
-                    <input onChange={ handleChange } className="form-input" value={ formData.last_name } id="last_name" type='text' />
-                    { formErrors.last_name && <p className="form-error">{ formErrors.last_name }</p> }
-                </div>
-                <div className="form-field">
-                    <label className="form-label" htmlFor="email">
-                        Email
-                    </label>
-                    <input onChange={ handleChange } className="form-input" value={ formData.email } id="email" type='email' />
-                    { formErrors.email && <p className="form-error">{ formErrors.email }</p> }
-                </div> 
-                <div className="form-field">
-                    <label className="form-label" htmlFor="password">
-                        Password
-                    </label>
-                    <input onChange={ handleChange } value={ formData.password } className="form-input" id="password" type="password" />
-                    { formErrors.password && <p className="form-error">{ formErrors.password }</p> }
-                </div>
-                <div className="form-footer">
-                    <button disabled={ validate() } className="form-button w-full">
-                        Register
-                    </button>
-                </div>
-            </form>
-        </div>
+        <Form size='w-6/12' title='Register' handleSubmit={ handleSubmit }>
+            <InputField
+                label='First Name'
+                id='first_name'
+                value={ formData.first_name }
+                error={ formErrors.first_name }
+                type='text'
+                handleChange={ handleChange } />
+            <InputField
+                label='Last Name'
+                id='first_name'
+                value={ formData.last_name }
+                error={ formErrors.last_name }
+                type='text'
+                handleChange={ handleChange } />
+            <InputField
+                label='Email'
+                id='email'
+                value={ formData.email }
+                error={ formErrors.email }
+                type='text'
+                handleChange={ handleChange } />
+            <InputField
+                label='Password'
+                id='password'
+                value={ formData.password }
+                error={ formErrors.password }
+                type='text'
+                handleChange={ handleChange } />
+            <FormFooter>
+                <FormButton text='Register' validate={ validate } />
+            </FormFooter>
+        </Form>
     )
 }
 

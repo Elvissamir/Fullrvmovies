@@ -135,7 +135,7 @@ function Movies() {
           <div className="flex mt-4">
             <SearchBox query={ searchQuery } onChange={ handleSearch } />
           </div>
-          <div className="mt-4 text-left">{ moviesCountMessage() }</div>
+          <div className="mt-4 text-center">{ moviesCountMessage() }</div>
           <div className="mt-4">
             <MoviesTable 
               movies={ data } 

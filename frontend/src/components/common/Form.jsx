@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
-function Form ({ title, children, handleSubmit }) {
+function Form ({ title, size, children, handleSubmit }) {
     return (
-        <div className="form-wrapper w-6/12">
+        <div className={ 'form-wrapper' + ' ' + size }>
             <h1 className="form-title">{ title }</h1>
             <form onSubmit={ handleSubmit } className="form">
                 { children }

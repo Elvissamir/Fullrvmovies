@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 function CustomersForm () {
     const dataInit = {
         first_name: '',
-        last_name: '',
+        last_name: '', 
         isGold: false,
         phone: ''
     }
@@ -47,7 +47,7 @@ function CustomersForm () {
     }
 
     return (
-        <Form title='Customers Form' handleSubmit={ handleSubmit } >
+        <Form size='w-6/12' title='Customers Form' handleSubmit={ handleSubmit } >
             <InputField
                 label='First Name'
                 id='first_name'

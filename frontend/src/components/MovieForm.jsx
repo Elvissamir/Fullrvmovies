@@ -6,6 +6,12 @@ import { getGenres } from "../services/genresService";
 import { getMovieById, saveMovie } from '../services/moviesService'
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import Form from './common/Form';
+import InputField from './common/InputField';
+import NumberField from './common/NumberField';
+import FormFooter from './common/FormFooter';
+import FormButton from './common/FormButton';
+import CheckboxFieldList from './common/CheckboxField';
 
 const formSchema = {
     _id: Joi.string().required().label('id'),
@@ -97,56 +103,53 @@ function MovieForm () {
     }
     
     return (
-        <div className="form-wrapper w-7/12">
-            <h1 className="form-title">Movie Form</h1>
-            <form onSubmit={ handleSubmit } className="form">
-                <div className="form-field">
-                    <label className="form-label" htmlFor="title">
-                        Title
-                    </label>
-                    <input onChange={ handleChange } className="form-input" value={ formData.title } id="title" type='text' />
-                    { formErrors.title && <p className="form-error">{ formErrors.title }</p> }
+        <Form size='w-7/12' title="Movie Form" handleSubmit={ handleSubmit }>
+            <InputField 
+                label="Title"
+                id="title"
+                type="text"
+                value={ formData.title }
+                error={ formErrors.title }
+                handleChange={ handleChange } />
+            <div className="form-field">
+                <div className="form-label">Genre Ids</div>
+                <div className="flex flex-row justify-between flex-wrap w-full">
+                    { genreOptions.map(genre => 
+                        <div className="w-5/12" key={ genre._id }>
+                            <input 
+                                onChange={ handleCheckboxChange }
+                                type="checkbox" 
+                                id='genreIds' 
+                                checked={ formData.genreIds.indexOf(genre._id) === -1? false:true}
+                                value={ genre._id } />
+                            <label 
+                                className="form-label ml-2" 
+                                htmlFor={ genre._id }>{ genre.name }</label>
+                        </div>
+                    )}
                 </div>
-                <div className="form-field">
-                    <div className="form-label">Genres</div>
-                    <div className="flex flex-row justify-between flex-wrap w-full">
-                        { genreOptions.map(genre => 
-                            <div className="w-5/12" key={ genre._id }>
-                                <input 
-                                    onChange={ handleCheckboxChange }
-                                    type="checkbox" 
-                                    id='genreIds' 
-                                    checked={ formData.genreIds.indexOf(genre._id) === -1? false:true}
-                                    value={ genre._id } />
-                                <label 
-                                    className="form-label ml-2" 
-                                    htmlFor={ genre._id }>{ genre.name }</label>
-                            </div>
-                        )}
-                    </div>
-                    { formErrors.genre && <p className="form-error">{ formErrors.genre }</p> }
-                </div>
-                <div className="form-field">
-                    <label className="form-label" htmlFor="numberInStock">
-                        In Stock
-                    </label>
-                    <input onChange={ handleChange } value={ formData.numberInStock } className="form-input" id="numberInStock" type="number" min="0" max="255" />
-                    { formErrors.numberInStock && <p className="form-error">{ formErrors.numberInStock }</p> }
-                </div>
-                <div className="form-field">
-                    <label className="form-label" htmlFor="dailyRentalRate">
-                        Rate
-                    </label>
-                    <input onChange={ handleChange } value={ formData.dailyRentalRate } className="form-input" id="dailyRentalRate" type="number" min="0" max="10" />
-                    { formErrors.dailyRentalRate && <p className="form-error">{ formErrors.dailyRentalRate }</p> }
-                </div>
-                <div className="form-footer">
-                    <button disabled={ validate() } className="form-button w-full">
-                        Save
-                    </button>
-                </div>
-            </form>
-        </div>
+                { formErrors.genre && <p className="form-error">{ formErrors.genre }</p> }
+            </div>
+            <NumberField 
+                label="Rental Rate"
+                id="dailyRentalRate"
+                min={ 1 }
+                max={ 10 }
+                value={ formData.dailyRentalRate }
+                error={ formErrors.dailyRentalRate }
+                handleChange={ handleChange } />
+            <NumberField 
+                label="Stock"
+                id="numberInStock"
+                min={ 1 }
+                max={ 255 }
+                value={ formData.numberInStock }
+                error={ formErrors.numberInStock }
+                handleChange={ handleChange } />
+            <FormFooter>
+                <FormButton text="Save" validate={ validate } />
+            </FormFooter>
+        </Form>
     )   
 }
 

@@ -5,6 +5,10 @@ import { toast } from 'react-toastify';
 import { useContext } from 'react';
 import { UserContext } from './context/userContext';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Form from './common/Form';
+import InputField from './common/InputField';
+import FormFooter from './common/FormFooter';
+import FormButton from './common/FormButton';
 
 function LoginForm () {
     const navigate = useNavigate()
@@ -49,33 +53,28 @@ function LoginForm () {
     }
 
     return (
-        <div className="form-wrapper w-6/12">
-            <h1 className="form-title">Login</h1>
-            <form onSubmit={ handleSubmit } className="form">
-                <div className="form-field">
-                    <label className="form-label" htmlFor="email">
-                        Email
-                    </label>
-                    <input onChange={ handleChange } className="form-input" value={ formData.email } id="email" type='email' />
-                    { formErrors.email && <p className="form-error">{ formErrors.email }</p> }
-                </div>
-                <div className="form-field">
-                    <label className="form-label" htmlFor="password">
-                        Password
-                    </label>
-                    <input onChange={ handleChange } value={ formData.password } className="form-input" id="password" type="password" />
-                    { formErrors.password && <p className="form-error">{ formErrors.password }</p> }
-                </div>
-                <div className="form-footer">
-                    <button disabled={ validate() } className="form-button">
-                        Sign In
-                    </button>
-                    <a className="inline-block align-baseline text-sm text-blue-500 hover:text-blue-800" href="/">
-                        Forgot Password?
-                    </a>
-                </div>
-            </form>
-        </div>
+        <Form size='w-6/12' title='Login' handleSubmit={ handleSubmit }>
+            <InputField 
+                label='Email'
+                id='email'
+                type='text'
+                value={ formData.email }
+                error={ formErrors.email }
+                handleChange={ handleChange } />
+            <InputField 
+                label='Password'
+                id='password'
+                type='password'
+                value={ formData.password }
+                error={ formErrors.password }
+                handleChange={ handleChange } />
+            <FormFooter>
+                <FormButton text='Login' validate={ validate } />
+                <a className="inline-block align-baseline text-sm text-blue-500 hover:text-blue-800" href="/">
+                    Forgot Password?
+                </a>
+            </FormFooter>
+        </Form>
     )
 }
 

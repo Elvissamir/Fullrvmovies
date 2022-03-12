@@ -74,7 +74,7 @@ function RentalsForm () {
     }
 
     return (
-        <Form title='Rentals Form' handleSubmit={ handleSubmit }>
+        <Form size='w-6/12' title='Rentals Form' handleSubmit={ handleSubmit }>
             <SelectField 
                 id='customerId'
                 label='Customer'
