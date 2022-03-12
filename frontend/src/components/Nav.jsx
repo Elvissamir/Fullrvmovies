@@ -6,7 +6,8 @@ function Nav () {
     const { currentUser, logoutUser } = useContext(UserContext)
     const menuLinks = [
         { name: 'Movies', url: '/movies' },
-        { name: 'Rentals', url: '/rentals' }
+        { name: 'Rentals', url: '/rentals' },
+        { name: 'Customers', url: '/customers' }
     ]
 
     const renderAuth = () => {
