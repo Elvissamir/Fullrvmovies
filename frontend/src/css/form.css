@@ -18,12 +18,24 @@
     @apply mt-4
 }
 
+.form-checkbox-field {
+    @apply flex w-6/12 items-center mt-4
+}
+
 .form-label {
     @apply text-gray-700 text-sm font-bold mb-2
 }
 
+.form-checkbox-label {
+    @apply text-gray-700 text-sm font-bold
+}
+
 .form-input {
     @apply border border-gray-200 py-1 px-2 shadow-md
+}
+
+.form-checkbox {
+    @apply py-1 px-2 shadow-md mr-2
 }
 
 .form .form-input:focus {

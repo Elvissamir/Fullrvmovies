@@ -66,8 +66,8 @@ function Customers () {
     const renderTableBlock = () => {
         return (
             <>
-                <div>
-                    <Link to='/customers/new' className='button action-button mx-auto'>New Customer</Link>
+                <div className='flex'>
+                    <Link to='/customers/new' className='button action-button'>New Customer</Link>
                 </div>
                 <div className='mt-8 text-center'>
                     { customersCountMessage() }

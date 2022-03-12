@@ -78,7 +78,7 @@ function Rentals () {
     const renderTableBlock = () => {
         return (
             <>
-                <div>
+                <div className='flex'>
                     <Link 
                         to='/rentals/new' 
                         className='button action-button'>New Rental</Link>
