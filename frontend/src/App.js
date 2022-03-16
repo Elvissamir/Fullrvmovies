@@ -60,7 +60,10 @@ function App() {
                     <CustomersForm />
                   </RequireAuth> } />
               <Route path='/rentals' element={ <Rentals /> } />
-              <Route path='/rentals/new' element={<RentalsForm></RentalsForm>} />
+              <Route path='/rentals/new' element={
+                  <RequireAuth redirectTo='/login' destination='/rentals/new'>
+                    <RentalsForm />
+                  </RequireAuth>} />
               <Route path='/' element={ <Movies /> } />
               <Route path='*' element={ <NotFound /> } />
             </Routes>

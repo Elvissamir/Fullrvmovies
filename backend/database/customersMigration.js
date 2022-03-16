@@ -2,20 +2,20 @@ const { Customer } = require('../models/Customer')
 
 const customersData = [
     { 
-        first_name: 'Soromay', 
-        last_name: 'Villareal',  
+        first_name: 'Andrea', 
+        last_name: 'Pera',  
         isGold: true,
         phone: '04243456711'
     },
     { 
         first_name: 'Barbara', 
-        last_name: 'Requena',  
+        last_name: 'Manzana',  
         isGold: true,
         phone: '04243458411'
     },
     { 
         first_name: 'Jessica', 
-        last_name: 'Torrealba',  
+        last_name: 'Limon',  
         isGold: false,
         phone: '04243436111'
     },

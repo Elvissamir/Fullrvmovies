@@ -1,10 +1,6 @@
 # FULLRVMOVIES
 Fullrvmovies is a movie rental/return SPA manager developed using NODE, React and MONGODB.
 
-You can check the live demo deployed to heroku: 
-(Keep in mind that with heroku's free tier if the app receives no traffic in a 30-minute period, it will sleep, so please be patient while it "wakes up".)
-https://cpptracker.herokuapp.com/login 
-
 ## Running using Docker for development: 
 1 - First Clone the project. 
 2 - Install npm dependencies in the backend directory.
